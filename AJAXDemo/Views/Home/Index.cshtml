@@ -2,7 +2,81 @@
     ViewData["Title"] = "Home Page";
 }
 
+@section Style {
+    <style>
+        .display-4 {
+            background-color: gray;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: aliceblue;
+            border: 5px solid black;
+            width: 100%;
+        }
+    </style>
+}
+
 <div class="text-center">
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+<ul id="MyUL">
+
+</ul>
+
+@section Scripts {
+    <script>
+        // //讀取JSON資料
+        // // [ 0,1,2] => 陣列，透過 Index 讀取資料
+        // //{屬性:屬性值,key:value} => 物件.屬性 => 屬性值
+        //   //console.log(emps[1]);  //{"name":"Jack","workYears":5,"salary":40000}
+        //   //console.log(emps[1].name);  //Jack
+        //   //console.log(emps[1].salary);  //40000
+        //   for(let i=0,max=emps.length;i<max;i++){
+        //       console.log(emps[i].name);
+        //       console.log(emps[i].workYears);
+        //       console.log(emps[i].salary);
+        //   }
+        const emp = {
+            "employees": [
+                { "name": "Tom", "workYears": 3, "salary": 35000 },
+                { "name": "Jack", "workYears": 5, "salary": 40000 },
+                { "name": "Mary", "workYears": 7, "salary": 45000 }
+            ]
+        };
+
+        //for(let i=0 ;i<emp.employees.length;i++){
+        //    console.log(emp.employees[i].name);
+        //    console.log(emp.employees[i].workYears);
+        //    console.log(emp.employees[i].salary);
+        //}
+
+        const MyUL = document.querySelector(`#MyUL`);
+
+        //$.each(emp.employees,function(index,value){
+        //    //console.log(value.name);
+        //    //console.log(value.workYears);
+        //    //console.log(value.salary);
+            
+        //    const { name,workYears,salary } = value;
+
+        //    //建立li元素
+        //    const li = document.createElement(`li`);
+        //    //建立文字內容
+        //    const txt = document.createTextNode(name);
+        //    //文字內容加入li元素
+        //    li.appendChild(txt);
+        //    //li元素加入ul
+        //    MyUL.appendChild(li);
+        //});
+
+        //emp.employees.forEach((emp)=>{
+        //    console.log(emp.name)
+        //})
+
+        let q =  emp.employees.map(value => {
+            const { name, workYears, salary } = value;
+            return (`<li>${name}-${salary}</li>`);
+        })
+        //join將陣列取出並組合以""內符號隔開
+        MyUL.innerHTML = q.join("");
+    </script>
+}
