@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "FirstAjax";
+}
+
+<h1>FirstAjax</h1>
+<input type="text" id="txt1"/>
+<button class="btn btn-dark" id="btn1">click</button>
+<div class="alert-info mt-3 p-3" id="div1">aaaaa</div>
+
+@section Scripts{
+    <script>
+        const btn = document.querySelector(`#btn1`);
+        const div = document.querySelector(`#div1`);
+        const txt = document.querySelector(`#txt1`);
+
+        btn.addEventListener("click",()=>{
+            //步驟一建立Ajax物件
+            const xhr = new XMLHttpRequest();
+
+            //步驟三接收伺服器回傳的結果(XMLHttpRequest物件有些事件會有執行緒問題，所以在send前綁定避免)
+            xhr.addEventListener("load",()=>{
+                var data = xhr.responseText;
+                div.innerHTML = `<h1>${data}</h1>`;
+            })
+
+            //步驟二發出要求
+            //open("Http Method(GET、POST、PUT、DELETE)", "伺服器端的程式", 同步或非同步(預設))
+            xhr.open("GET",`/Api/Index?name=${txt.value}`);
+            xhr.send();
+        })
+
+    </script>
+}
+

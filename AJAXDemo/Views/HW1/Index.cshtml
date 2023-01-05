@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>AJAX HomeWork 1</h1>
+<div id="Mycard" class="row">
+</div>
+
+@section Scripts{
+    <script src="~/js/travel.js"></script>
+    <script>
+        let inner = "";
+        $.each(DATAS,function(index,value){
+            inner +=` <div class="card m-2" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 class="card-title">${value.Name}</h5>
+                                    <h6 class="card-subtitle mb-2 text-muted">${value.Add}</h6>
+                                            <p class="card-text">${value.Toldescribe}</p>
+                                            <a href="${value.Website}" class="card-link btn btn-dark" >官網</a>
+                                                    <a href="${value.TYWebsite}" class="card-link btn btn-dark">觀光局</a>
+                        </div>
+                     </div> `;
+                });
+        $(`#Mycard`).append(inner);
+    </script>
+}
