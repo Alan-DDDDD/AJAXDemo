@@ -1,0 +1,15 @@
+﻿@model IEnumerable<AJAXDemo.Models.Member>
+@{
+    ViewData["Title"] = "member";
+}
+
+<h1>member</h1>
+
+@{
+    <ul>
+    @foreach(Member item in Model)
+    {
+        <li>@item.Name</li>
+    }
+    </ul>
+}

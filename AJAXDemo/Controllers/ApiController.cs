@@ -7,6 +7,7 @@ namespace AJAXDemo.Controllers
     {
         public IActionResult Index(string name)
         {
+            Thread.Sleep(5000);
             if (string.IsNullOrEmpty(name))
             {
                 name = "Ajax哈";
