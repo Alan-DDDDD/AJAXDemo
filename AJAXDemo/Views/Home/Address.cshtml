@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Address";
+}
+
+<h1>Address</h1>
+<select id="city"></select>
+<select id="site"></select>
+<select id="road"></select>
+
+@section Scripts{
+    <script>
+        var xhr = new XMLHttpRequest();
+        var city = document.querySelector(`#city`);
+        var site = document.querySelector(`#site`);
+        var road = document.querySelector(`#road`);
+        xhr.addEventListener(`load`, () => {
+            var datas = JSON.parse(xhr.responseText);
+            //Jsom.parse將JSON字串轉成物件
+            //JSON.stringify將物件轉成JASON字串
+            //console.log(JSON.parse(datas));
+            let cityops = datas.map((value)=>{
+                return (`<option>${value.city}</option>`);
+            });
+            city.innerHTML = cityops.join("");
+            //for (let i = 0; i < datas.length; i++) {
+            //    city.innerHTML += `<option>${datas[i].city}</option>`;
+            //}
+        });
+
+        xhr.open("Get", `@Url.Content("~/Api/City")`);
+        xhr.send();
+
+        city.addEventListener('change',()=>{
+            console.log(city.selectedIndex);
+            console.log(city.value);
+        xhr.send();
+        });
+        site.addEventListener('change', () => {
+            console.log(city.selectedIndex);
+            console.log(city.value);
+        });
+    </script>
+}
+

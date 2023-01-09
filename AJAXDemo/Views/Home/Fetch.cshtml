@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewData["Title"] = "Fetch";
+}
+
+<h1>Fetch</h1>
+
+@section Scripts{
+    <script>
+        fetch("@Url.Content("~/Api/Index")")
+        .then(Response=>Response.text())
+        .then(Data=>console.log(Data))
+        .catch(err=>console.log(err));
+    </script>
+}

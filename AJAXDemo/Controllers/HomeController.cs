@@ -20,6 +20,16 @@ namespace AJAXDemo.Controllers
             return View(_context.Members);
         }
 
+        public IActionResult Address()
+        {
+            return View();
+        }
+
+        public IActionResult Fetch()
+        {
+            return View();
+        }
+
         public IActionResult Index()
         {
             return View();

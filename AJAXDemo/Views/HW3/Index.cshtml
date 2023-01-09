@@ -1,0 +1,47 @@
+﻿@{
+    ViewData["Title"] = "Index";
+}
+
+<h1 id="my">Index</h1>
+<select id="city"></select>
+<select id="site"></select>
+<select id="road"></select>
+
+@section Scripts{
+    <script>
+        const city = $(`#city`);
+        const site = $(`#site`);
+        const road = $(`#road`);
+        asyncCity();
+        city.on('change',function(){
+            asyncSite();
+        });
+        site.on('change',function(){
+            asyncRoad();
+        });
+
+        async function asyncCity(){
+            const Api = await fetch(`@Url.Content("~/Api/City")`);
+            const datas = await Api.json();
+
+            var datashtml = datas.map(value=>`<option>${value.city}</option>`);
+            city.html(datashtml);
+            asyncSite();
+        }
+
+        async function asyncSite() {
+            const Api = await fetch(`@Url.Content("~/Api/Site?City=${city.val()}")`);
+            const datas = await Api.json();
+            var datashtml = datas.map(value => `<option>${value.siteId}</option>`);
+            site.html(datashtml);
+            asyncRoad();
+        }
+
+        async function asyncRoad() {
+            const Api = await fetch(`@Url.Content("~/Api/Road?Site=${site.val()}")`);
+            const datas = await Api.json();
+            var datashtml = datas.map(value => `<option>${value}</option>`);
+            road.html(datashtml);
+        }
+    </script>
+}

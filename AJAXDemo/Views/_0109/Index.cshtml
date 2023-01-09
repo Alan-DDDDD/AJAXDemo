@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<form method="post" name="userForm">
+    <label>姓名</label>
+    <input type="text" name="Name"/><br />
+    <label>年齡</label>
+    <input type="text" name="Age"/><br />
+    <label>Email</label>
+    <input type="text" name="Email"/><br />
+    <div class="input-group mb-3">
+        
+        <input type="file" class="form-control" id="inputGroupFile01" name="photo">
+    </div>
+    <input type="submit" value="click"/>
+</form>
+<div id="result"></div>
+
+@section Scripts{
+    <script>
+        const btn = document.querySelector(`input[type="submit"]`);
+        btn.addEventListener('click',(event)=>{
+            event.preventDefault();
+            var formData = new FormData(document.userForm);
+            var xhr = new XMLHttpRequest();
+            xhr.addEventListener(`load`, () => {
+                var result = xhr.responseText;
+                $(`#result`).html(result);
+            });
+            xhr.open("Post","@Url.Content("~/_0109/Index1")");
+            xhr.send(formData);
+        });
+    </script>
+}
