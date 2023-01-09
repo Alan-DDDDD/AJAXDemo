@@ -1,0 +1,46 @@
+﻿@model AJAXDemo.Models.Member
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>登入</h1>
+
+<div class="row">
+    <div class="col-md-4">
+            <div class="form-group">
+                <input asp-for="Name" class="form-control" id="user"/>
+                <span id="a"></span>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-primary" id="login">登入</button>
+            </div>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        const xhr = new XMLHttpRequest();
+        xhr.addEventListener('load',function(){
+            const resual = xhr.responseText;
+            if(resual == 0){
+                $(`#a`).text(`可以使用子`);
+            }else{
+                $(`#a`).text(`${resual}已經被使用`);
+            };
+        });
+        $(`#login`).on(`click`,function(){
+            if($(`#user`).val()){
+                const val = $(`#user`).val();
+                xhr.open("Post","HW2/login");
+                xhr.setRequestHeader("content-Type","application/x-www-form-urlencoded");
+                xhr.send(`name=${val}`);
+            }
+        });
+    </script>
+}
