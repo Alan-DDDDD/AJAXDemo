@@ -37,7 +37,7 @@
         $(`#login`).on(`click`,function(){
             if($(`#user`).val()){
                 const val = $(`#user`).val();
-                xhr.open("Post","HW2/login");
+                xhr.open("Post",`@Url.Content("HW2/login")`);
                 xhr.setRequestHeader("content-Type","application/x-www-form-urlencoded");
                 xhr.send(`name=${val}`);
             }
