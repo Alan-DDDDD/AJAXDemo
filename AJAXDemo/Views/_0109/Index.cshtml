@@ -22,17 +22,28 @@
 
 @section Scripts{
     <script>
-        const btn = document.querySelector(`input[type="submit"]`);
-        btn.addEventListener('click',(event)=>{
+        //const btn = document.querySelector(`input[type="submit"]`);
+        //btn.addEventListener('click',(event)=>{
+        //    event.preventDefault();
+        //    var formData = new FormData(document.userForm);
+        //    var xhr = new XMLHttpRequest();
+        //    xhr.addEventListener(`load`, () => {
+        //        var result = xhr.responseText;
+        //        $(`#result`).html(result);
+        //    });
+        //    xhr.open("Post","@Url.Content("~/_0109/Index1")");
+        //    xhr.send(formData);
+        //});
+
+        $(`input[type="submit"]`).on(`click`, async (event) => {
             event.preventDefault();
             var formData = new FormData(document.userForm);
-            var xhr = new XMLHttpRequest();
-            xhr.addEventListener(`load`, () => {
-                var result = xhr.responseText;
-                $(`#result`).html(result);
+            const response = fetch("@Url.Content("~/_0109/Index1")",{
+                method:"POST",
+                body:formData
             });
-            xhr.open("Post","@Url.Content("~/_0109/Index1")");
-            xhr.send(formData);
-        });
+            const datas = response.text();
+            $(`#result`).html(result);
+        }
     </script>
 }

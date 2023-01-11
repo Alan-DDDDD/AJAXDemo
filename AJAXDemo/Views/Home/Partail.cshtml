@@ -1,0 +1,14 @@
+﻿@model IEnumerable<AJAXDemo.Models.Member>
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<h2>@ViewBag.data</h2>
+<h2>Hello PartailView</h2>
+
+<ul class="list-group">
+    @foreach (var item in Model)
+    {
+        <li class="list-group-item">@item.Name</li>
+    }
+</ul>

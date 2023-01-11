@@ -30,6 +30,16 @@ namespace AJAXDemo.Controllers
             return View();
         }
 
+        public IActionResult jQuery()
+        {
+            return View();
+        }
+
+        public IActionResult Partail()
+        {
+            return PartialView(_context.Members);
+        }
+
         public IActionResult Index()
         {
             return View();
